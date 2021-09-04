@@ -19,6 +19,6 @@ public class CameraStable : MonoBehaviour
         carY = TheCar.transform.eulerAngles.y;
         carZ = TheCar.transform.eulerAngles.z;
 
-        transform.eulerAngles = new Vector3(carX - carX, carY, carZ - carZ);
+        transform.eulerAngles = new Vector3(0, carY, 0);
     }
 }
