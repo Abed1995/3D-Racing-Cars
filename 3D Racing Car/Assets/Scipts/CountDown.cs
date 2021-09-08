@@ -11,10 +11,12 @@ public class CountDown : MonoBehaviour
     public AudioSource go;
     public GameObject labTimer;
     public GameObject car;
+    public GameObject opponentCar;
     // Start is called before the first frame update
     void Start()
     {
-        car.GetComponent<CarController>().enabled = true;
+        car.GetComponent<CarUserControl>().enabled = false;
+        opponentCar.GetComponent<CarAIControl>().enabled = false;
         StartCoroutine(countDown());
     }
 
@@ -37,8 +39,9 @@ public class CountDown : MonoBehaviour
         yield return new WaitForSeconds(1);
         countdown.SetActive(false);
         labTimer.SetActive(true);
-        car.GetComponent<CarController>().enabled = true;
-        
+        car.GetComponent<CarUserControl>().enabled = true;
+        opponentCar.GetComponent<CarAIControl>().enabled = true;
+
 
     }
 }
