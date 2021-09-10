@@ -15,12 +15,22 @@ public class BestLapTime : MonoBehaviour
     GameObject labComplete;
     [SerializeField]
     GameObject HalfLab;
-    [SerializeField]
-    GameObject LabTimeBox;
+    //[SerializeField]
+    //GameObject LabTimeBox;
 
 
+    private void Start()
+    {
+        PlayerPrefs.SetString("Abed", "Abed");
+
+    }
     private void OnTriggerEnter(Collider other)
     {
+
+        PlayerPrefs.SetFloat("MaxMin", LapTimeManager.MinutesTime);
+        PlayerPrefs.SetFloat("MaxSec", LapTimeManager.secondsTime);
+        PlayerPrefs.SetFloat("MaxMilli", LapTimeManager.millitime);
+
         if (LapTimeManager.secondsTime<=9)
         {
             bestSecDisplay.GetComponent<Text>().text = "0" + LapTimeManager.secondsTime + ".";
@@ -40,6 +50,7 @@ public class BestLapTime : MonoBehaviour
 
         bestMilliDisplay.GetComponent<Text>().text = ""+LapTimeManager.millitime;
 
+        PlayerPrefs.SetString("Abed", "Abed");
         LapTimeManager.secondsTime = 0;
         LapTimeManager.MinutesTime = 0;
         LapTimeManager.millitime = 0;

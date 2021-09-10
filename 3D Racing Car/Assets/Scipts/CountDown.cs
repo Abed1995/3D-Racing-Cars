@@ -15,6 +15,7 @@ public class CountDown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        labTimer.GetComponent<LapTimeManager>().enabled = false;
         car.GetComponent<CarUserControl>().enabled = false;
         opponentCar.GetComponent<CarAIControl>().enabled = false;
         StartCoroutine(countDown());
@@ -38,7 +39,7 @@ public class CountDown : MonoBehaviour
         countdown.SetActive(true);
         yield return new WaitForSeconds(1);
         countdown.SetActive(false);
-        labTimer.SetActive(true);
+        labTimer.GetComponent<LapTimeManager>().enabled = true;
         car.GetComponent<CarUserControl>().enabled = true;
         opponentCar.GetComponent<CarAIControl>().enabled = true;
 
