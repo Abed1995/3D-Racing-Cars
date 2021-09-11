@@ -5,21 +5,22 @@ using UnityEngine.UI;
 
 public class LapTimeManager : MonoBehaviour
 {
-     public static float millitime, secondsTime, MinutesTime;
+     public static int secondsTime, MinutesTime;
+    public static float millitime;
     [SerializeField]
     GameObject milleSecondsDisplay;
     [SerializeField]
     GameObject secondsDisplay;
     [SerializeField]
     GameObject minutesDisplay;
-    
-  
 
+
+    public static float rawTime;
     // Update is called once per frame
     void Update()
     {
         millitime += Time.deltaTime*10;
-
+        rawTime += Time.deltaTime;
         milleSecondsDisplay.GetComponent<Text>().text = "" + millitime;
         if(millitime >= 10)
         {

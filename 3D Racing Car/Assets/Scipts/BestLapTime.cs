@@ -18,42 +18,48 @@ public class BestLapTime : MonoBehaviour
     //[SerializeField]
     //GameObject LabTimeBox;
 
-
+    public float rawTime;
     private void Start()
     {
-        PlayerPrefs.SetString("Abed", "Abed");
-
+        
+        
     }
     private void OnTriggerEnter(Collider other)
     {
 
-        PlayerPrefs.SetFloat("MaxMin", LapTimeManager.MinutesTime);
-        PlayerPrefs.SetFloat("MaxSec", LapTimeManager.secondsTime);
+        rawTime = PlayerPrefs.GetFloat("RawTime");
+        if (LapTimeManager.rawTime <= rawTime)
+        {
+            if (LapTimeManager.secondsTime <= 9)
+            {
+                bestSecDisplay.GetComponent<Text>().text = "0" + LapTimeManager.secondsTime + ".";
+            }
+            else
+            {
+                bestSecDisplay.GetComponent<Text>().text = "" + LapTimeManager.secondsTime + ".";
+            }
+            if (LapTimeManager.MinutesTime <= 9)
+            {
+                bestMinDisplay.GetComponent<Text>().text = "0" + LapTimeManager.MinutesTime + ":";
+            }
+            else
+            {
+                bestMinDisplay.GetComponent<Text>().text = "" + LapTimeManager.MinutesTime + ":";
+            }
+
+            bestMilliDisplay.GetComponent<Text>().text = "" + LapTimeManager.millitime;
+        }
+       
+
+        PlayerPrefs.SetInt("MaxMin", LapTimeManager.MinutesTime);
+        PlayerPrefs.SetInt("MaxSec", LapTimeManager.secondsTime);
         PlayerPrefs.SetFloat("MaxMilli", LapTimeManager.millitime);
+        PlayerPrefs.SetFloat("RawTime", LapTimeManager.rawTime);
 
-        if (LapTimeManager.secondsTime<=9)
-        {
-            bestSecDisplay.GetComponent<Text>().text = "0" + LapTimeManager.secondsTime + ".";
-        }
-        else
-        {
-            bestSecDisplay.GetComponent<Text>().text = "" + LapTimeManager.secondsTime + ".";
-        }
-        if (LapTimeManager.MinutesTime <= 9)
-        {
-            bestMinDisplay.GetComponent<Text>().text = "0" + LapTimeManager.MinutesTime + ":";
-        }
-        else
-        {
-            bestMinDisplay.GetComponent<Text>().text = "" + LapTimeManager.MinutesTime + ":";
-        }
-
-        bestMilliDisplay.GetComponent<Text>().text = ""+LapTimeManager.millitime;
-
-        PlayerPrefs.SetString("Abed", "Abed");
         LapTimeManager.secondsTime = 0;
         LapTimeManager.MinutesTime = 0;
         LapTimeManager.millitime = 0;
+        LapTimeManager.rawTime = 0;
 
         HalfLab.SetActive(true);
         labComplete.SetActive(false);

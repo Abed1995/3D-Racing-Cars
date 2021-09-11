@@ -16,30 +16,33 @@ public class LoadBestLab : MonoBehaviour
     float minCount;
     float secCount;
     float milliCount;
+
+    public
+    float sec;
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.DeleteAll();
+        minCount = PlayerPrefs.GetInt("MaxMin");
 
-        minCount = PlayerPrefs.GetFloat("MaxMin");
 
-
-        secCount = PlayerPrefs.GetFloat("MaxSec");
+        secCount = PlayerPrefs.GetInt("MaxSec");
 
 
         milliCount = PlayerPrefs.GetFloat("MaxMilli");
        
 
-        Debug.Log(PlayerPrefs.GetString("Abed"));
+        sec = secCount;
 
-        if (LapTimeManager.secondsTime <= 9)
+        if (secCount<= 9)
         {
             bestSecDisplay.GetComponent<Text>().text = "0" + secCount + ".";
         }
-        else
+        else 
         {
             bestSecDisplay.GetComponent<Text>().text = "" + secCount + ".";
         }
-        if (LapTimeManager.MinutesTime <= 9)
+        if (minCount<= 9)
         {
             bestMinDisplay.GetComponent<Text>().text = "0" + minCount + ":";
         }
