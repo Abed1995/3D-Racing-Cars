@@ -49,7 +49,7 @@ public class BestLapTime : MonoBehaviour
 
             bestMilliDisplay.GetComponent<Text>().text = "" + LapTimeManager.millitime;
         }
-       
+
 
         PlayerPrefs.SetInt("MaxMin", LapTimeManager.MinutesTime);
         PlayerPrefs.SetInt("MaxSec", LapTimeManager.secondsTime);
